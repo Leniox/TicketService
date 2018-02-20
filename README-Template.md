@@ -1,4 +1,4 @@
-# Project Title
+# Walmart Ticket Service
 
 One Paragraph of project description goes here
 
@@ -6,23 +6,14 @@ One Paragraph of project description goes here
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
 ### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+I have not used gradle to make a project like this before. I believe these are the only steps:
 ```
-Give the example
+1. git clone this repository
+2. Navigate to the main directory with the gradle files
+3. type ./gradlew run
 ```
+The command line GUI should pop up and walk you through my program from there
 
 And repeat
 
