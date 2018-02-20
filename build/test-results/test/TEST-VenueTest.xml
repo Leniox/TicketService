@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="VenueTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-02-20T03:00:25" hostname="MacBook-Pro-8.byod.gmu.edu" time="10.012">
+  <properties/>
+  <testcase name="findSeatTest" classname="VenueTest" time="10.012"/>
+  <system-out><![CDATA[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 3 6 10 13 16 20 23 26 30 33 36 40 43 46 50 46 43 40 36 33 30 26 23 20 16 13 10 6 3 
+3 6 9 13 16 19 23 26 29 33 36 39 43 46 49 53 49 46 43 39 36 33 29 26 23 19 16 13 9 6 
+6 9 13 16 19 23 26 29 33 36 39 43 46 49 53 56 53 49 46 43 39 36 33 29 26 23 19 16 13 9 
+10 13 16 20 23 26 30 33 36 40 43 46 50 53 56 60 56 53 50 46 43 40 36 33 30 26 23 20 16 13 
+13 16 19 23 26 29 33 36 39 43 46 49 53 56 59 63 59 56 53 49 46 43 39 36 33 29 26 23 19 16 
+13 16 19 23 26 29 33 36 39 43 46 49 53 56 59 63 59 56 53 49 46 43 39 36 33 29 26 23 19 16 
+10 13 16 20 23 26 30 33 36 40 43 46 50 53 56 60 56 53 50 46 43 40 36 33 30 26 23 20 16 13 
+6 9 13 16 19 23 26 29 33 36 39 43 46 49 53 56 53 49 46 43 39 36 33 29 26 23 19 16 13 9 
+3 6 9 13 16 19 23 26 29 33 36 39 43 46 49 53 49 46 43 39 36 33 29 26 23 19 16 13 9 6 
+thread 2: After seatHold
+thread 3: After seatHold
+258
+----------[[ STAGE ]]----------
+------------------------------
+xxxxxxxxxssssssssssssssssssxxx
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+----------[[ STAGE ]]----------
+------------------------------
+xxxxxxxxxssssssssssssssssssxxx
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+----------[[ STAGE ]]----------
+------------------------------
+xxxxxxxxxssssssssssssssssssxxx
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+----------[[ STAGE ]]----------
+------------------------------
+xxxxxxxxxssssssssssssssssssxxx
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+----------[[ STAGE ]]----------
+------------------------------
+xxxxxxxxxssssssssssssssssssxxx
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+ssssssssssssssssssssssssssssss
+thread 1: Before seatHold
+thread 3: Before seatHold
+thread 4: Before seatHold
+thread 2: Before seatHold
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

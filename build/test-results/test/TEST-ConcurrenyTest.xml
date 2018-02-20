@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ConcurrenyTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-02-20T03:00:25" hostname="MacBook-Pro-8.byod.gmu.edu" time="0.003">
+  <properties/>
+  <testcase name="Test1" classname="ConcurrenyTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
