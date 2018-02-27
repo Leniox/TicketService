@@ -10,6 +10,8 @@ public class Row {
 
 
 
+    //This is a "bucket" for seats. This is so I can get close to O(numSeats) when requesting
+    //simple constructor
     public Row(ArrayList<Seat> someRow)
     {
 
@@ -18,6 +20,7 @@ public class Row {
         totalSeatsAtStart = someRow.size();
         seatsFromStart = someRow;
     }
+    //if the stack is not empty, pop an remove remaining seats counter.
     public Seat getSeat()
     {
         if (!seats.isEmpty())
@@ -29,6 +32,8 @@ public class Row {
         return null;
 
     }
+
+    //return seat if it exists
     public Seat getSeat(int col)
     {
         if (seats.contains(seatsFromStart.get(col)))

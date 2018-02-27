@@ -22,6 +22,8 @@ public class Venue implements TicketService {
     //creates seat objects of the size of the grid and creates the grid, which is an arraylist of row objects.
     public Venue(int rows, int cols, boolean createdWeighted)
     {
+        //create a weighted venue depending on the use case. A regular venue creates a grid of Seat objects
+        //while a weighted venue also does this but assigns a weight to them based off of a weighting system.
         this.rows = rows;
         this.cols = cols;
         if (createdWeighted)
@@ -52,6 +54,9 @@ public class Venue implements TicketService {
 
         int halfOfRow = rows/2;
         int halfOfcol = cols/2;
+        //if we have an odd number of rows or columns, we get an off by one error
+        //resulting in percentages over 100%. I think this still occurs in some cases but the
+        //distribution of numbers is correct for the BFS implementation
         if (rows % 2 != 0)
         {
             halfOfRow++;
@@ -88,8 +93,14 @@ public class Venue implements TicketService {
                     colCost = ((cols - j)*100 / halfOfcol);
                 }
                 int totalCost = ((colCost + rowCost))/2;
+                //calculate total cost. This is row cost + col cost where row cost is equal to a distrubtion on a number line
+                //where instead of distributing numbers evenly across your field of numbers, you distribute over half of the number line
+                //and reach the pinnacle of your distribution at the center of the line. Mirror the latter of the line.
 
-
+                //create new seat object and assign it a weight
+                //I also put the weight into a weightMap. This is important because when I want to start my BFS
+                //I need to know where to start and expand from. Thus, I have a tree map (tree because I can order input a reverse
+                //comparator to order based off of highest weighted seats first) that can query seats and can BFS from there.
                 Seat someSeat = new Seat(i, j);
                 if (weightMap.get(totalCost) == null)
                 {
@@ -113,6 +124,7 @@ public class Venue implements TicketService {
 //        printWeightedGraph();
 
     }
+    //This was used for testing to ensure the distribution looked correct. You can call this after you create a venue to mamke sure it looks right
     public void printWeightedGraph()
     {
         for (Row someRow : grid)
@@ -125,6 +137,8 @@ public class Venue implements TicketService {
             System.out.println();
         }
     }
+    //Find weighted Seat: find seat with highest weight. BFS until and increment a counter once you find a valid seat.
+
     public SeatHold findWeightedSeats(int numSeats, String customerEmail)
     {
         ArrayList<Integer> potentialWeightsToRemove = new ArrayList<>();
@@ -133,17 +147,20 @@ public class Venue implements TicketService {
         {
             myLock.lock();
 
+            //acquire lock and find the highest weight
             for (Integer weight : weightMap.keySet())
             {
                 ArrayList<Seat> someList = weightMap.get(weight);
                 ArrayList<Seat> availableSeats = new ArrayList<>();
 
                 //more optimization could see me ordering the seats of available seats by proximity to row/2 and col /2 (center most)
+                //if the size of the list is empty, add it to a list of weights to remove. I can't remove while iterating without concurrent modification error
                 if (someList.size() == 0)
                 {
                     potentialWeightsToRemove.add(weight);
                     continue;
                 }
+                //once we find a valid seat, add all seats
                 for (Seat aSeat : someList)
                 {
                     if (aSeat.available)
@@ -151,6 +168,7 @@ public class Venue implements TicketService {
                         availableSeats.add(aSeat);
                     }
                 }
+                //This may be redundant.
                 if (availableSeats.size() == 0)
                 {
                     potentialWeightsToRemove.add(weight);
@@ -189,8 +207,12 @@ public class Venue implements TicketService {
         return null;
 
     }
+
+    //simple ascii representation. make the stage a third of the size. It looks good for large numbers
+    //but a bit wonky for smaller numbers.
     public void displayWeightedVenue()
     {
+
         try
         {
             myLock.lock();
@@ -280,22 +302,24 @@ public class Venue implements TicketService {
             myLock.unlock();
         }
     }
+    //breadth first search on seats. O(V + E)
     public ArrayList<Seat> BFS(Seat initialSeat, int numSeats)
     {
         Queue<Seat> myQueue = new LinkedList<>();
         ArrayList<Seat> finalSeatList = new ArrayList<>();
         myQueue.add(initialSeat);
-        boolean [][] visited = new boolean[rows][cols];
+        //
 
         while (!myQueue.isEmpty())
         {
             Seat someSeat = myQueue.poll();
-            if (!visited[someSeat.row][someSeat.col] && someSeat.available )
+            if ( someSeat.available )
             {
-                visited[someSeat.row][someSeat.col] = true;
+//                visited[someSeat.row][someSeat.col] = true;
                 someSeat.available = false;
                 finalSeatList.add(someSeat);
 
+                //once we find the number of seats, we're good to go.
                 if (finalSeatList.size() == numSeats)
                 {
                     break;
@@ -343,6 +367,8 @@ public class Venue implements TicketService {
     @Override
     public SeatHold findAndHoldSeats(int numSeats, String customerEmail) {
         //iterat e through the grid, find rows that have enough num seats, reserve those seats for 1 minute, then release them.
+        //This is based on a bucket system. Go through buckets, see if that buckets available seats have enough seats requested. Then pop from the stack
+        //of seats inside that bucket. This is the cloest to O(numSeats) time that I can get.
         try
         {
             myLock.lock();
@@ -396,6 +422,7 @@ public class Venue implements TicketService {
 
 
     }
+    //get seats based off of row and col. Run time of O(1)
     public SeatHold pickIndividualseats(int row, int col, String customerEmail)
     {
         Seat someSeat;
@@ -407,6 +434,7 @@ public class Venue implements TicketService {
 
             try
             {
+                //catch index out of bounds if row is not good input. Same thing with col.
                 someRow = grid.get(row);
                 someSeat = someRow.getSeat(col);
                 if (someSeat == null)
@@ -420,8 +448,10 @@ public class Venue implements TicketService {
             }
             ArrayList<Seat> seatList = new ArrayList<>();
             seatList.add(someSeat);
+            //add seat to a single seat hold and decrement counters for the row bucket and the total venue.
             someSeatHold = new SeatHold(seatList, customerEmail, someRow, this);
             remainingSeats--;
+            //not popping from stack so we have to remove manually.
             someRow.remainingSeats--;
             //this is how we can check if its "active" or not. We just remove it.
             someRow.seats.remove(someSeat);
@@ -439,6 +469,9 @@ public class Venue implements TicketService {
     //bit of a tricky one. Runs an loop that tries to find consecutive seats by checking the seat ahead of it and making sure
     //that it is one column number off. If works, then we set a loop that goes from that index i + the num of seats and adds those
     //consecutive seats.
+    //Since we're  not sure if there are consecutive seats, we have average O(row) because we may have to search the entire row. However,
+    //if the seats are staggered in a way where there are available seats but not available seats concsecutive, we could have worst case
+    //O(grid) to search through every row and column to see if there are available seats AND they were consecutive.
     public SeatHold findAndHoldConsecutiveSeats(int numSeats, String customerEmail)
     {
         try
@@ -489,6 +522,7 @@ public class Venue implements TicketService {
                             SeatHold seatHold = new SeatHold(seats,customerEmail, someRow, this);
                             seatHoldMap.put(customerEmail, seatHold);
                             //find a way to set a timer here.
+                            //we have to remove seats here since we're not popping from stack.
                             someRow.remainingSeats = someRow.remainingSeats - numSeats;
                             remainingSeats = remainingSeats - numSeats;
                             return seatHold;
@@ -597,6 +631,8 @@ public class Venue implements TicketService {
 
         if (seatHoldMap.get(customerEmail) != null)
         {
+            //seatHold is a map of the current transaction.
+            //Reserved Seats is a map of all transactions.
             SeatHold someSeatHold = seatHoldMap.get(customerEmail);
             someSeatHold.didContinue = true;
             reservedSeats.put(someSeatHold.seatHoldID, someSeatHold.seatList);

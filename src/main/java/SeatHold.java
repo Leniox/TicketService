@@ -16,14 +16,17 @@ public class SeatHold {
         this.seatList = seatList;
         this.customerEmail = custEmail;
         this.someRow = someRow;
+        //use UUID to generate a customer ID for the order confirmation
         seatHoldID = UUID.randomUUID().toString();
         //this is a timer that gets kicked off everytime you make a reservation. We update the boolean value if the user
         //moves forward with their request. If they have not moved forward, we release the seats back to the row.
+
 
         new Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
+                        //didContinue is updated in the driver based on whether or not the user went forward with the transaction.
                         if (didContinue == false)
                         {
                             if (!doesContainWeighted)

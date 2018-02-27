@@ -11,6 +11,8 @@ public class VenueTest {
     {
         final CyclicBarrier gate = new CyclicBarrier(5);
         Venue someVenue = new Venue(9,30, true);
+        //create venue test. This test is going to test a weighted seats test to ensure we get the correct weightd seats with concurrency
+        //start 5 threads and reserve the seats on some of them and do not reserve the seats and let them expire on other threads.
 
 
 
