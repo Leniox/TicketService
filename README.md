@@ -1,4 +1,4 @@
-# Walmart Ticket Service
+#  Ticket Service
 
 One Paragraph of project description goes here
 
